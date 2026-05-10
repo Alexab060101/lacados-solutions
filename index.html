@@ -228,10 +228,13 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Header scroll
+// Header scroll — se vuelve blanco solo al salir del hero
 const header = document.getElementById('header');
+const heroWrapper = document.getElementById('heroWrapper');
+let heroBottom = heroWrapper.offsetTop + heroWrapper.offsetHeight;
+window.addEventListener('resize', () => { heroBottom = heroWrapper.offsetTop + heroWrapper.offsetHeight; });
 window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 60);
+  header.classList.toggle('scrolled', window.scrollY > heroBottom);
 }, { passive: true });
 
 // Counters
