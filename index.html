@@ -269,7 +269,7 @@ gsap.to(track, {
     trigger: '.servicios-section',
     pin: true,
     scrub: 1.2,
-    end: () => '+=' + (track.scrollWidth - pin.clientWidth),
+    end: () => '+=' + (track.scrollWidth - pin.clientWidth + 500),
     invalidateOnRefresh: true,
   }
 });
