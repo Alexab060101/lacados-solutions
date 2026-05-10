@@ -63,7 +63,7 @@ header.scrolled nav a:hover { color: var(--gold); }
 header.scrolled .hamburger span { background: var(--text); }
 
 /* === HERO === */
-.hero-sticky-wrapper { position: relative; height: 560vh; }
+.hero-sticky-wrapper { position: relative; height: 504vh; }
 .hero {
   position: sticky; top: 0;
   height: 100vh; min-height: 600px;
