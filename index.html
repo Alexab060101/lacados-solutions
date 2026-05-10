@@ -122,20 +122,24 @@
   </div>
 </section>
 
-<!-- PROYECTOS -->
+<!-- PROYECTOS — collage + lightbox -->
 <section class="section proyectos-section" id="proyectos">
   <div class="section-inner">
     <span class="eyebrow">Nuestros trabajos</span>
     <h2 class="section-h">Resultados que<br><em>hablan solos.</em></h2>
-    <div class="proyectos-grid">
-      <!-- Fotos de proyectos reales aquí -->
-      <div class="proyecto-card reveal"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/lacado-en-blanco-de-muebles-de-cocina-un-trabajo-impecable.jpeg" alt="Lacado cocina en blanco" loading="lazy"></div>
-      <div class="proyecto-card reveal reveal-delay-1"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/hermosas-puertas-lacadas-en-color-blanco-y-escaleras-de-madera-tambien-en-blanco-2.jpg" alt="Puertas lacadas y escaleras de madera" loading="lazy"></div>
-      <div class="proyecto-card reveal reveal-delay-2"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/Edificio-Residencial-Restauracion-Fachada-e1719490446527.jpg" alt="Restauración fachada edificio residencial" loading="lazy"></div>
-      <div class="proyecto-card reveal reveal-delay-3"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/Puertas-lacadas-en-color-ral-9003.jpeg" alt="Puertas lacadas color RAL 9003" loading="lazy"></div>
+    <div class="proyectos-collage reveal">
+      <div class="pc-item pc-1"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/lacado-en-blanco-de-muebles-de-cocina-un-trabajo-impecable.jpeg" alt="Lacado cocina en blanco" loading="lazy"><div class="pc-zoom">+</div></div>
+      <div class="pc-item pc-2"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/hermosas-puertas-lacadas-en-color-blanco-y-escaleras-de-madera-tambien-en-blanco-2.jpg" alt="Puertas lacadas y escaleras" loading="lazy"><div class="pc-zoom">+</div></div>
+      <div class="pc-item pc-3"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/Edificio-Residencial-Restauracion-Fachada-e1719490446527.jpg" alt="Restauracion fachada" loading="lazy"><div class="pc-zoom">+</div></div>
+      <div class="pc-item pc-4"><img src="https://lacadossolutions.com/wp-content/uploads/2024/05/Puertas-lacadas-en-color-ral-9003.jpeg" alt="Puertas RAL 9003" loading="lazy"><div class="pc-zoom">+</div></div>
     </div>
   </div>
 </section>
+
+<dialog id="lightbox" class="lb-dialog">
+  <button class="lb-close" id="lbClose">&#x2715;</button>
+  <img id="lbImg" src="" alt="">
+</dialog>
 
 <!-- NOSOTROS -->
 <section class="nosotros-section" id="nosotros">
@@ -255,6 +259,19 @@ document.querySelectorAll('.hstat-num[data-count]').forEach(el => {
   }, { threshold: 0.5 });
   obs.observe(el);
 });
+
+// Lightbox
+const lbDialog = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lbImg');
+document.querySelectorAll('.pc-item').forEach(item => {
+  item.addEventListener('click', () => {
+    lbImg.src = item.querySelector('img').src;
+    lbImg.alt = item.querySelector('img').alt;
+    lbDialog.showModal();
+  });
+});
+document.getElementById('lbClose').addEventListener('click', () => lbDialog.close());
+lbDialog.addEventListener('click', e => { if (e.target === lbDialog) lbDialog.close(); });
 
 // Mobile menu
 const hamburger = document.querySelector('.hamburger');
