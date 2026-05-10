@@ -85,7 +85,7 @@ header.scrolled .hamburger span { background: var(--text); }
   background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.65) 100%);
 }
 .hero-title-float {
-  position: absolute; top: 50%; left: 6vw; z-index: 2;
+  position: absolute; top: 42%; left: 6vw; z-index: 2;
   transform: translateY(-100%);
   max-width: 760px;
 }
