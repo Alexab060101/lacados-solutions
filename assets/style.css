@@ -145,18 +145,26 @@ h1 em { font-style: italic; color: var(--gold-light); }
 }
 .section-h em { font-style: italic; color: var(--gold); }
 
-/* === SERVICIOS === */
-.servicios-section { background: var(--off-white); }
-.servicios-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 24px; margin-top: 52px;
+/* === SERVICIOS — horizontal scroll === */
+.servicios-section { background: var(--off-white); overflow: hidden; }
+.servicios-pin {
+  height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 6vw;
+}
+.servicios-header { margin-bottom: 48px; flex-shrink: 0; }
+.servicios-track {
+  display: flex; gap: 28px;
+  width: max-content;
+  will-change: transform;
 }
 .servicio-card {
+  flex: 0 0 320px;
   background: var(--white); border: 1px solid var(--border);
-  border-radius: 20px; padding: 36px 28px;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  border-radius: 20px; padding: 40px 32px;
+  transition: box-shadow 0.3s, border-color 0.3s;
 }
-.servicio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); border-color: var(--gold); }
+.servicio-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.08); border-color: var(--gold); }
 .servicio-icon { font-size: 2rem; margin-bottom: 16px; }
 .servicio-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
 .servicio-card p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
@@ -254,7 +262,6 @@ footer { background: #080808; padding: 72px 6vw 32px; }
 
 /* === RESPONSIVE === */
 @media (max-width: 960px) {
-  .servicios-grid { grid-template-columns: repeat(2, 1fr); }
   .valor-inner, .nosotros-inner { grid-template-columns: 1fr; gap: 48px; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
 }
@@ -269,7 +276,11 @@ footer { background: #080808; padding: 72px 6vw 32px; }
   .hero-content { padding: 0 20px 140px; }
   .hero-stats { gap: 20px; }
   .hstat-div { display: none; }
-  .servicios-grid { grid-template-columns: 1fr; }
+  /* servicios mobile */
+  .servicios-section { overflow: hidden; }
+  .servicios-pin { height: 100svh; padding: 0 20px; }
+  .servicios-header { margin-bottom: 32px; }
+  .servicio-card { flex: 0 0 78vw; }
   .proyectos-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }

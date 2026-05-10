@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -60,31 +62,33 @@
 </section>
 </div>
 
-<!-- SERVICIOS -->
-<section class="section servicios-section" id="servicios">
-  <div class="section-inner">
-    <span class="eyebrow">Lo que hacemos</span>
-    <h2 class="section-h">Todos los acabados.<br><em>Un solo equipo.</em></h2>
-    <div class="servicios-grid">
-      <article class="servicio-card reveal">
+<!-- SERVICIOS — horizontal scroll -->
+<section class="servicios-section" id="servicios">
+  <div class="servicios-pin">
+    <div class="servicios-header">
+      <span class="eyebrow">Lo que hacemos</span>
+      <h2 class="section-h">Todos los acabados.<br><em>Un solo equipo.</em></h2>
+    </div>
+    <div class="servicios-track" id="serviciosTrack">
+      <article class="servicio-card">
         <div class="servicio-icon">🪣</div>
         <h3>Lacados</h3>
         <p>Cocinas, armarios, puertas y ventanas. Acabado perfecto a pistola con laca de alta resistencia.</p>
         <a href="#contacto" class="card-link">Ver más →</a>
       </article>
-      <article class="servicio-card reveal reveal-delay-1">
+      <article class="servicio-card">
         <div class="servicio-icon">🖌️</div>
         <h3>Pintura Interior</h3>
         <p>Estuco, microcemento, papel decorativo y pintura decorativa para cualquier estancia.</p>
         <a href="#contacto" class="card-link">Ver más →</a>
       </article>
-      <article class="servicio-card reveal reveal-delay-2">
+      <article class="servicio-card">
         <div class="servicio-icon">🏠</div>
         <h3>Pintura Exterior</h3>
         <p>Revestimiento de fachadas, puertas metálicas y tratamientos de protección.</p>
         <a href="#contacto" class="card-link">Ver más →</a>
       </article>
-      <article class="servicio-card reveal reveal-delay-3">
+      <article class="servicio-card">
         <div class="servicio-icon">🪵</div>
         <h3>Barnizados</h3>
         <p>Parquet, tarimas y escaleras de madera. Tratamiento profesional para máxima durabilidad.</p>
@@ -253,6 +257,22 @@ document.querySelectorAll('.hstat-num[data-count]').forEach(el => {
 const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('nav');
 hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+
+// SERVICIOS — horizontal scroll (todas las pantallas)
+gsap.registerPlugin(ScrollTrigger);
+const track = document.getElementById('serviciosTrack');
+const pin   = document.querySelector('.servicios-pin');
+gsap.to(track, {
+  x: () => -(track.scrollWidth - pin.clientWidth),
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.servicios-section',
+    pin: true,
+    scrub: 1.2,
+    end: () => '+=' + (track.scrollWidth - pin.clientWidth),
+    invalidateOnRefresh: true,
+  }
+});
 
 // STICKY HERO SEQUENCE
 (function() {
